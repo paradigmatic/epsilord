@@ -54,18 +54,26 @@ with GeneratorDrivenPropertyChecks {
       }
     }
 
-/*
+
 
     "I can compute 'gteq'" in {
       forAll( bigDouble, smallDouble ){ 
 	(a:Double,b:Double) => {
 	  ( (a+b) *>=* a ) should be (true)
-	  ( (a+b+eps) *>=* a ) should be (true)
-	  ( (2.01*a+b) *>* a ) should be (true)
+	  ( (2.01*a+b) *>=* a ) should be (true)
 	}
       }
     }
-*/
+
+    "I can compute 'lteq'" in {
+      forAll( bigDouble, smallDouble ){ 
+	(a:Double,b:Double) => {
+	  ( a *<=* (a+b) ) should be (true)
+	  ( a *<=* (2.01*a+b) ) should be (true)
+	}
+      }
+    }
+
 
   }
 
