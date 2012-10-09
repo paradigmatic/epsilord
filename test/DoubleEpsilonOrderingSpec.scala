@@ -16,6 +16,8 @@ with GeneratorDrivenPropertyChecks {
     val order = doubleOrdering(eps)
     val smallDouble = Gen.choose(0,eps)
     val bigDouble = Gen.choose(-1e-20,1e20)
+    val twiceSmallDouble = for( d <- smallDouble ) yield (2*d)
+
     import order._
 
     "I can compute equality" in {
@@ -74,7 +76,15 @@ with GeneratorDrivenPropertyChecks {
       }
     }
 
-
+    "I can truncate a double" in {
+      forAll( twiceSmallDouble, twiceSmallDouble ) {
+	(a:Double,b:Double) => {
+	  whenever( a.truncate == b.truncate ) {
+	    (a *==* b) should be (true)
+	  }
+	}
+      }
+    }
   }
 
 }

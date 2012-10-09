@@ -8,6 +8,8 @@ case class DoubleEpsilonOrdering( epsilon: Double ) extends Ordering[Double] {
     else 0
   }
 
+  def truncate( x: Double ) = math.round(x/epsilon)*epsilon
+  
   implicit def mkOps( x: Double ) = new Ops(x)
   
   class Ops( x: Double ) {
@@ -17,6 +19,7 @@ case class DoubleEpsilonOrdering( epsilon: Double ) extends Ordering[Double] {
     def *>=*( y: Double ) = gteq(x,y)
     def *<*( y: Double ) = lt(x,y)
     def *<=*( y: Double ) = lteq(x,y)
+    def truncate = DoubleEpsilonOrdering.this.truncate(x)
   }
 
 
