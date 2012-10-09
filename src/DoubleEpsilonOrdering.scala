@@ -19,4 +19,5 @@ case class DoubleEpsilonOrdering( epsilon: Double ) extends Ordering[Double] {
     def *<=*( y: Double ) = lteq(x,y)
   }
 
+
 }

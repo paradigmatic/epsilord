@@ -8,9 +8,9 @@ scalaVersion := "2.9.2"
 
 crossScalaVersions := Seq("2.9.0-1", "2.9.1", "2.9.2" )
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.7.2" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
 
-//libraryDependencies += "com.typesafe.akka" % "akka-actor" % "2.0.1"
+libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.10.0" % "test"
 
 scalacOptions += "-deprecation"
 
