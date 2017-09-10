@@ -2,19 +2,21 @@ organization := "ch.unige"
 
 name := "epsilord"
 
-version := "0.1.0"
+version := "0.0.1"
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.12.3"
 
-crossScalaVersions := Seq("2.9.0-1", "2.9.1", "2.9.2" )
+//crossScalaVersions := Seq("2.9.0-1", "2.9.1", "2.9.2" )
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
+resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
-libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.10.0" % "test"
+libraryDependencies ++= Seq(
+  "org.scalatest" %% "scalatest" % "3.0.4",
+  "org.scalacheck" %% "scalacheck" % "1.13.5" % "test"
+)
 
-scalacOptions += "-deprecation"
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:existentials")
 
-scalaSource in Compile <<= baseDirectory(_ / "src")
+scalaSource in Compile := baseDirectory.value / "src"
 
-scalaSource in Test <<= baseDirectory(_ / "test")
-
+scalaSource in Test := baseDirectory.value / "test"
